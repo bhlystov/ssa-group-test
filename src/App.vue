@@ -1,16 +1,11 @@
 <template>
     <div>
-        <!--<router-view />-->
-        <books-list />
+        <router-view />
     </div>
 </template>
 
 <script>
-    import BooksList from "./pages/BooksList.vue";
     export default {
         name: 'App',
-        components: {
-            BooksList
-        },
     }
 </script>

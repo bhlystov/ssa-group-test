@@ -10,11 +10,11 @@ class ApiClient {
         //
         // const responseAnaliticsData = await this.request( 'get', url);
 
-        const responseAnaliticsData = [
+        const booksListData = [
             {
                 idBook: 1,
                 nameBook: 'Game of thrones',
-                imgBook: '/src/img/books.jpg',
+                imgBook: "./img/books.jpg",
                 authorBook: {
                     idAuthor: 1,
                     name: 'Johny Depp',
@@ -24,7 +24,7 @@ class ApiClient {
             {
                 idBook: 2,
                 nameBook: 'Holly Bible',
-                imgBook: '/src/img/books.jpg',
+                imgBook: "./img/books.jpg",
                 authorBook: {
                     idAuthor: 1,
                     name: 'Johny Depp',
@@ -34,7 +34,7 @@ class ApiClient {
             {
                 idBook: 3,
                 nameBook: 'Harry Potter 2',
-                imgBook: '/src/img/books.jpg',
+                imgBook: "./img/books.jpg",
                 authorBook: {
                     idAuthor: 2,
                     name: 'Joan Rouling',
@@ -44,7 +44,7 @@ class ApiClient {
             {
                 idBook: 4,
                 nameBook: 'Fighting club',
-                imgBook: '/src/img/books.jpg',
+                imgBook: "./img/books.jpg",
                 authorBook: {
                     idAuthor: 3,
                     name: 'Chack Palanik',
@@ -54,7 +54,7 @@ class ApiClient {
             {
                 idBook: 5,
                 nameBook: 'Rich dad Pour dad',
-                imgBook: '/src/img/books.jpg',
+                imgBook: "./img/books.jpg",
                 authorBook: {
                     idAuthor: 4,
                     name: 'Robert Kiosake',
@@ -64,7 +64,7 @@ class ApiClient {
             {
                 idBook: 6,
                 nameBook: 'Stalker',
-                imgBook: '/src/img/books.jpg',
+                imgBook: "./img/books.jpg",
                 authorBook: {
                     idAuthor: 5,
                     name: 'Братья Стругацкие',
@@ -74,7 +74,7 @@ class ApiClient {
             {
                 idBook: 7,
                 nameBook: 'The nordic history about everything',
-                imgBook: '/src/img/books.jpg',
+                imgBook: "./img/books.jpg",
                 authorBook: {
                     idAuthor: 6,
                     name: 'NoName Author',
@@ -84,7 +84,7 @@ class ApiClient {
             {
                 idBook: 8,
                 nameBook: "Stalker 'Луннь'",
-                imgBook: '/src/img/books.jpg',
+                imgBook: "./img/books.jpg",
                 authorBook: {
                     idAuthor: 7,
                     name: 'Ежи тумановский',
@@ -94,7 +94,7 @@ class ApiClient {
             {
                 idBook: 9,
                 nameBook: 'It',
-                imgBook: '/src/img/books.jpg',
+                imgBook: "./img/books.jpg",
                 authorBook: {
                     idAuthor: 8,
                     name: 'Stiven Kipling',
@@ -104,7 +104,7 @@ class ApiClient {
             {
                 idBook: 10,
                 nameBook: 'World War',
-                imgBook: '/src/img/books.jpg',
+                imgBook: "./img/books.jpg",
                 authorBook: {
                     idAuthor: 8,
                     name: 'Stiven Kipling',
@@ -114,7 +114,7 @@ class ApiClient {
             {
                 idBook: 11,
                 nameBook: 'Harry Potter 3',
-                imgBook: '/src/img/books.jpg',
+                imgBook: "./img/books.jpg",
                 authorBook: {
                     idAuthor: 2,
                     name: 'Joan Rouling',
@@ -123,7 +123,7 @@ class ApiClient {
             },
         ];
 
-        return responseAnaliticsData;
+        return booksListData;
     }
 
     async getAthorListBooks( companyId,  criteria ) {

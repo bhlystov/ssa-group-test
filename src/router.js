@@ -2,13 +2,14 @@ import Vue from 'vue';
 import VueRouter from 'vue-router'
 
 import BooksList from './pages/BooksList.vue';
+import BookDescription from './pages/BookDescription.vue';
+import AuthorListOfBooks from './pages/AuthorListOfBooks.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: '/',
-        name: 'books/index',
         component: BooksList,
         //component: {template: '<router-view/>'},
         // children: [
@@ -28,6 +29,26 @@ const routes = [
         // ],
     },
     {
+        path: '/book',
+        name: 'bookDescription',
+        component: BookDescription,
+        props: route => {
+            return {
+                idBook: parseInt(route.query.idBook),
+            };
+        },
+    },
+    {
+        path: '/author',
+        name: 'author',
+        component: AuthorListOfBooks,
+        props: route => {
+            return {
+                authorId: parseInt(route.query.authorId),
+            };
+        },
+    },
+    {
         path: '*',
         redirect: {path: '/'},
     },
@@ -36,10 +57,5 @@ const routes = [
 const router = new VueRouter({
     routes,
 });
-
-// router.beforeEach((to, from, next) => {
-//
-//     next();
-// });
 
 export default router;

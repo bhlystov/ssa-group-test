@@ -7,11 +7,16 @@ import router from './router';
 
 Vue.use(ElementUI, {locale});
 
-import VueLodash from 'vue-lodash'
+//Add Lodash for pagination
+import VueLodash from 'vue-lodash';
+const options = { name: 'lodash' };
+Vue.use(VueLodash, options);
 
-const options = { name: 'lodash' } // customize the way you want to call it
-
-Vue.use(VueLodash, options) // options is optional
+//Add bootstrap
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue);
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 document.addEventListener('DOMContentLoaded', function (event) {
     const mountPoint = document.getElementById('app');
