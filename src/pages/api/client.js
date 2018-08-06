@@ -2,13 +2,12 @@ import axios from 'axios';
 
 import qs from 'qs';
 
+/**
+ * Temporary API client
+ */
 class ApiClient {
 
-    async getBooksListData( companyId,  criteria ) {
-
-        // const url = backendRouter.generate('api_shop_analytics_get_sales_report', { companyId: companyId, criteria });
-        //
-        // const responseAnaliticsData = await this.request( 'get', url);
+    async getBooksListData() {
 
         const booksListData = [
             {
@@ -126,11 +125,7 @@ class ApiClient {
         return booksListData;
     }
 
-    async getAthorListBooks( companyId,  criteria ) {
-
-        // const url = backendRouter.generate('api_shop_analytics_get_sales_report', { companyId: companyId, criteria });
-        //
-        // const responseAnaliticsData = await this.request( 'get', url);
+    async getAthorListBooks() {
 
         const responseAthorListBooks = [
             {
@@ -251,7 +246,6 @@ class ApiClient {
 
         return responseAthorListBooks;
     }
-
 
     async request(method, url, data, params) {
         let response;

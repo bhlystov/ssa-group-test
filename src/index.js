@@ -1,11 +1,7 @@
 import Vue from 'vue';
-import ElementUI from 'element-ui';
-import locale from 'element-ui/lib/locale/lang/ru-RU';
-import './element-theme.scss'
 import App from './App';
 import router from './router';
-
-Vue.use(ElementUI, {locale});
+import loading from 'vue-loading';
 
 //Add Lodash for pagination
 import VueLodash from 'vue-lodash';
@@ -23,19 +19,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     new Vue({
         router,
-        data() {
-            const data = {};
-
-            for ([key, value] of Object.entries(mountPoint.dataset)) {
-                try {
-                    data[key] = JSON.parse(value);
-                } catch (e) {
-                    data[key] = value;
-                }
-            }
-
-            return data;
-        },
+        directives: { loading },
         render: h => h(App),
     }).$mount(mountPoint);
 });

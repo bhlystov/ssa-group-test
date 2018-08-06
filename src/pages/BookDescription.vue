@@ -1,7 +1,10 @@
 <template>
     <div>
         <img src="" alt="">
-        <button class="btn btn-success">Previous page</button>
+        <button class="btn btn-success"
+            @click="goBack(-1)">
+            Back
+        </button>
         <h1>Мы перешли на book Desciption</h1>
     </div>
 </template>
@@ -20,6 +23,9 @@
             this.reload();
         },
         methods: {
+            goBack(step) {
+                this.$router.go(step);
+            },
             async reload() {
                 this.loading = true;
                 this.listOfBooks  = await apiClient.getBooksListData();

@@ -11,22 +11,13 @@ const routes = [
     {
         path: '/',
         component: BooksList,
-        //component: {template: '<router-view/>'},
-        // children: [
-        //     {
-        //         path: 'books',
-        //         name: 'books/index',
-        //         component: BooksList,
-                // props: route => {
-                //     return {
-                //         companyId: parseInt(route.params.companyId),
-                //         dateFrom: route.query.from,
-                //         dateTo: route.query.to,
-                //         groupBy: route.query.group,
-                //     };
-                // },
-        //     },
-        // ],
+        props: route => {
+            return {
+                setNumberOfPage: parseInt(route.query.setNumberOfPage),
+                sortBy: route.query.sortBy,
+                filterBookName: route.query.filterBookName
+            };
+        },
     },
     {
         path: '/book',

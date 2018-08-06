@@ -1,45 +1,52 @@
 <template>
     <div class="container">
-        <el-row class="search-wrapper" :gutter="10">
+        <div class="search-wrapper">
+            <div class="form-group">
+                <input type="text"
+                       class="form-control col-xs-6 col-md-6 col-lg-6"
+                       placeholder="Filter by book name"
+                       icon="search"
+                       v-model="filter" >
 
-            <el-col :lg="12" :md="12" :sm="12" :xs="24">
-                <el-input placeholder="Filter by Name" icon="search" v-model="filter" />
-            </el-col>
-
-            <el-col class="col-space" :lg="6" :md="6" :sm="6" :xs="24"> &nbsp; </el-col>
-
-            <el-col :lg="6" :md="6" :sm="6" :xs="24">
-                <el-select v-model="sort" placeholder="Sort by">
-                    <el-option
+                <select class="form-control col-xs-6 col-md-6 col-lg-6"
+                        placeholder="Sort by"
+                        v-model="sort">
+                    <option
                             v-for="item in options"
                             :label="item.label"
                             :value="item.value"
                             :key="item.value">
+                    </option>
+                </select>
+            </div>
+        </div>
+        <!--END search wrapper -->
 
-                    </el-option>
-                </el-select>
-            </el-col>
-
-        </el-row> <!-- search wrapper -->
-
-        <ul class="list-group">
+        <ul class="list-group col-xs-12 col-md-12 col-lg-12">
             <li v-for="item in collection" class="list-group-item">
+                <!--class="list-group-item"-->
+
                 <!--TODO не хочет подгружать картинку с указаного пути через v-bind пока что указал на прямую-->
                 <img src="./img/books.jpg" class="img-book">
-                <p class="book-name"
-                   @click="redirectToAuthorListOfBooks(item.idBook)">
-                    {{item.nameBook}}
-                </p>
-                <p class="author-name"
-                   @click="redirectToBookDescription(item.idBook)">
-                    {{item.authorBook.name}}
-                </p>
-                <!--{{ item.idBook }}-->
-                <!--{{ item.nameBook }}-->
-                <!--{{ item.imgBook }}-->
-                <!--{{ item.authorBook.idAuthor }}-->
-                <!--{{ item.authorBook.name }}-->
-                <!--{{ item.descriptionOfBook }}-->
+                <div class="redirect-to">
+                    <p class="book-name">
+                        {{item.nameBook}}
+                    </p>
+                    <button class="btn btn-primary"
+                            @click="redirectToAuthorListOfBooks(item.idBook)">
+                        Book description
+                    </button>
+                </div>
+
+                <div class="redirect-to">
+                    <p class="author-name">
+                        {{item.authorBook.name}}
+                    </p>
+                    <button class="btn btn-primary"
+                            @click="redirectToBookDescription(item.idBook)">
+                        Author info...
+                    </button>
+                </div>
             </li>
         </ul>
         <hr>
@@ -52,17 +59,12 @@
 </template>
 <script>
     import apiClient from "./api/client";
-    import { format, subDays, parse } from "date-fns";
-
-    const formatDate = date => format(parse(date), 'DD.MM.YYYY');
-    const formatDateTime = date => format(parse(date), 'DD.MM.YYYY / H:mm');
-
     export default {
         name: 'BooksList',
         components: {
         },
         props: {
-            companyId: {
+            setNumberOfPage: {
                 type: Number,
                 default() {
                     return 1;
@@ -70,20 +72,25 @@
             },
             sortBy: {
                 type: String,
-                default: 'month',
+                default() {
+                    return '';
+                },
             },
+            filterBookName: {
+                type: String,
+                default() {
+                    return '';
+                },
+            }
         },
         data() {
             return {
                 data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                 perPage: 3,
                 pagination: {},
-
-                loading: false,
                 listOfBooks: [],
-
-                filter: '',
-                sort: '',
+                filter: this.filterBookName,
+                sort: this.sortBy,
                 options: [
                     { label: 'По умолчанию', value: '' },
                     { label: 'Сортировка по имени автора а-я', value: 'а-я' },
@@ -96,7 +103,6 @@
              * Filtering books name
              */
             getFilteredListOfBooks() {
-
                 let listbooks = this.listOfBooks.filter((book) => {
                     return book.nameBook.toLowerCase().includes(this.filter.toLowerCase());
                 });
@@ -108,7 +114,6 @@
                 } else {
                     return listbooks;
                 }
-
             },
             /**
              * Paginate and return books collection
@@ -118,18 +123,32 @@
             }
         },
         mounted() {
-            this.setPage(1);
             this.reload();
+            this.setPage(this.$route.query.setNumberOfPage ? this.$route.query.setNumberOfPage : 1);
         },
         methods: {
+            /**
+             * Redirects to other pages
+             */
             redirectToBookDescription(idBook) {
                 this.$router.push({name: 'bookDescription', query: {idBook: idBook}});
             },
             redirectToAuthorListOfBooks(idAuthor) {
                 this.$router.push({name: 'author', query: {authorId: idAuthor}});
             },
+            /**
+             * Pagination methods
+             */
             setPage(p) {
                 this.pagination = this.paginator(this.data.length, p);
+                this.$router.push({
+                    path: '/',
+                    query: {
+                        setNumberOfPage: p,
+                        sortBy: this.sort,
+                        filterBookName: this.filter,
+                    }
+                });
             },
             paginate(data) {
                 return _.slice(data, this.pagination.startIndex, this.pagination.endIndex + 1)
@@ -144,28 +163,64 @@
                     pages: _.range(1, Math.ceil(totalItems / this.perPage) + 1)
                 };
             },
-
+            updateRouteParamsMainWay() {
+                this.$router.push({
+                    path: '/',
+                    query: {
+                        setNumberOfPage: this.setNumberOfPage,
+                        sortBy: this.sort,
+                        filterBookName: this.filter
+                    }
+                });
+            },
+            /**
+             * Get data of the list of books
+             * @returns {Array}
+             */
             async reload() {
-                this.loading = true;
                 this.listOfBooks  = await apiClient.getBooksListData();
-                this.loading = false;
             },
         },
+        watch: {
+            filter() {
+                this.updateRouteParamsMainWay();
+            },
+            sort() {
+                this.updateRouteParamsMainWay();
+            }
+        }
     }
 </script>
 <style lang="scss">
-    .list-group {
-        overflow: hidden;
-        .list-group-item {
-            width: 37%;
-            display: block;
-            float: left;
-            /*display: flex;*/
-            /*flex-direction: column;*/
-            /*justify-content: center;*/
-            /*align-items: center;*/
-            margin-right: 10px;
-            margin-bottom: 10px;
+    .container {
+        .list-group {
+            overflow: hidden;
+            flex-direction: row;
+            .list-group-item {
+                width: 33%;
+                margin-right: 10px;
+                margin-bottom: 10px;
+
+                &>img {
+                    display: block;
+                    width: 100%;
+                }
+                .redirect-to {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    margin: 10px 0;
+
+                    p {
+                        margin: auto;
+                    }
+                }
+            }
+        }
+
+        .btn-toolbar {
+            display: flex;
+            justify-content: center;
         }
     }
 </style>
