@@ -5,8 +5,10 @@
 ## Build Setup
 
 ``` bash
-## install dependencies
-## npm install
+for install need versions npm & nodejs
+
+npm - 5.6.0
+nodejs - v10.1.0
 
 # install dependencies and serve with hot reload at localhost:8080
 npm run watch

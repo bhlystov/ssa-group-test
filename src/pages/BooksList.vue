@@ -20,20 +20,19 @@
                 </select>
             </div>
         </div>
-        <!--END search wrapper -->
+        <!--END search & filter wrapper -->
 
         <ul class="list-group col-xs-12 col-md-12 col-lg-12">
             <li v-for="item in collection" class="list-group-item">
-                <!--class="list-group-item"-->
 
-                <!--TODO не хочет подгружать картинку с указаного пути через v-bind пока что указал на прямую-->
+                <!--TODO не хочет подгружать картинку с указаного пути через v-bind {{item.imgBook}} пока что указал на прямую-->
                 <img src="./img/books.jpg" class="img-book">
                 <div class="redirect-to">
                     <p class="book-name">
                         {{item.nameBook}}
                     </p>
                     <button class="btn btn-primary"
-                            @click="redirectToAuthorListOfBooks(item.idBook)">
+                            @click="redirectToBookDescription(item.idBook)">
                         Book description
                     </button>
                 </div>
@@ -43,7 +42,7 @@
                         {{item.authorBook.name}}
                     </p>
                     <button class="btn btn-primary"
-                            @click="redirectToBookDescription(item.idBook)">
+                            @click="redirectToAuthorListOfBooks(item.authorBook.idAuthor)">
                         Author info...
                     </button>
                 </div>
@@ -59,6 +58,7 @@
 </template>
 <script>
     import apiClient from "./api/client";
+
     export default {
         name: 'BooksList',
         components: {
@@ -92,9 +92,9 @@
                 filter: this.filterBookName,
                 sort: this.sortBy,
                 options: [
-                    { label: 'По умолчанию', value: '' },
-                    { label: 'Сортировка по имени автора а-я', value: 'а-я' },
-                    { label: 'Сортировка по имени автора а-a', value: 'я-а' },
+                    { label: 'By default', value: '' },
+                    { label: 'Sorting a-z', value: 'a-z' },
+                    { label: 'Sorting z-a', value: 'z-a' },
                 ],
             }
         },
@@ -103,16 +103,16 @@
              * Filtering books name
              */
             getFilteredListOfBooks() {
-                let listbooks = this.listOfBooks.filter((book) => {
+                let listBooks = this.listOfBooks.filter((book) => {
                     return book.nameBook.toLowerCase().includes(this.filter.toLowerCase());
                 });
 
-                if (this.sort == 'а-я') {
-                    return listbooks.sort();
-                } else if(this.sort == 'я-а') {
+                if (this.sort == 'a-z') {
+                    return listBooks.sort();
+                } else if(this.sort == 'z-a') {
                     return listbooks.sort().reverse();
                 } else {
-                    return listbooks;
+                    return listBooks;
                 }
             },
             /**
@@ -120,6 +120,14 @@
              */
             collection() {
                 return this.paginate(this.getFilteredListOfBooks);
+            }
+        },
+        watch: {
+            filter() {
+                this.updateRouteParamsMainWay();
+            },
+            sort() {
+                this.updateRouteParamsMainWay();
             }
         },
         mounted() {
@@ -181,17 +189,9 @@
                 this.listOfBooks  = await apiClient.getBooksListData();
             },
         },
-        watch: {
-            filter() {
-                this.updateRouteParamsMainWay();
-            },
-            sort() {
-                this.updateRouteParamsMainWay();
-            }
-        }
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     .container {
         .list-group {
             overflow: hidden;
@@ -201,7 +201,7 @@
                 margin-right: 10px;
                 margin-bottom: 10px;
 
-                &>img {
+                .img-book {
                     display: block;
                     width: 100%;
                 }

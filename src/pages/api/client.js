@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import qs from 'qs';
 
 /**
@@ -206,7 +205,7 @@ class ApiClient {
                 listBooks: [
                     {
                         idBook: 7,
-                        nameBook: 'The nordic history about everything',
+                        nameBook: 'The nordic history',
                         imgBook: '/src/img/books.jpg',
                         descriptionOfBook: 'Some description about book...'
                     }
