@@ -2,15 +2,25 @@
     <div class="container">
         <div class="search-wrapper">
             <div class="form-group">
-                <input type="text"
-                       class="form-control col-xs-6 col-md-6 col-lg-6"
-                       placeholder="Filter by book name"
-                       icon="search"
-                       v-model="filter" >
+                <div class="input-group mb-3 col-xs-6 col-md-6 col-lg-6 book-name-filter">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Filter by book name"
+                           icon="search"
+                           v-model="localFilterBookName" >
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary"
+                                type="button"
+                                @click="localFilterBookName=''"
+                        >
+                            Clear
+                        </button>
+                    </div>
+                </div>
 
                 <select class="form-control col-xs-6 col-md-6 col-lg-6"
                         placeholder="Sort by"
-                        v-model="sort">
+                        v-model="sortOptions">
                     <option
                             v-for="item in options"
                             :label="item.label"
@@ -24,8 +34,6 @@
 
         <ul class="list-group col-xs-12 col-md-12 col-lg-12">
             <li v-for="item in collection" class="list-group-item">
-
-                <!--TODO не хочет подгружать картинку с указаного пути через v-bind {{item.imgBook}} пока что указал на прямую-->
                 <img src="./img/books.jpg" class="img-book">
                 <div class="redirect-to">
                     <p class="book-name">
@@ -86,31 +94,81 @@
         data() {
             return {
                 data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                perPage: 3,
+                perPage: 5,
                 pagination: {},
                 listOfBooks: [],
-                filter: this.filterBookName,
-                sort: this.sortBy,
+                localFilterBookName: this.filterBookName,
+                sortOptions: this.sortBy,
                 options: [
                     { label: 'By default', value: '' },
-                    { label: 'Sorting a-z', value: 'a-z' },
-                    { label: 'Sorting z-a', value: 'z-a' },
+                    { label: 'Sorting name author a-z', value: 'author[a-z]' },
+                    { label: 'Sorting name author z-a', value: 'author[z-a]' },
+                    { label: 'Sorting name book a-z', value: 'book[a-z]' },
+                    { label: 'Sorting name book z-a', value: 'book[z-a]' },
                 ],
             }
         },
         computed: {
             /**
-             * Filtering books name
+             * Filtering books name, author name
+             * @return {Array} filtered list of books
              */
             getFilteredListOfBooks() {
+                //Filter on input
                 let listBooks = this.listOfBooks.filter((book) => {
-                    return book.nameBook.toLowerCase().includes(this.filter.toLowerCase());
+                    return book.nameBook.toLowerCase().includes(this.localFilterBookName.toLowerCase());
                 });
 
-                if (this.sort == 'a-z') {
-                    return listBooks.sort();
-                } else if(this.sort == 'z-a') {
-                    return listbooks.sort().reverse();
+                //Filter options
+                if(this.sortOptions) {
+
+                    switch (this.sortOptions) {
+                        case 'author[a-z]':
+                            return listBooks.sort( function(a, b) {
+                                if (a.authorBook.name.toLowerCase() < b.authorBook.name.toLowerCase()) {
+                                    return -1;
+                                }
+                                if (a.authorBook.name.toLowerCase() > b.authorBook.name.toLowerCase()) {
+                                    return 1;
+                                }
+                                return 0;
+                            });
+                            break;
+                        case 'author[z-a]':
+                            return listBooks.sort( function(a, b) {
+                                if (a.authorBook.name.toLowerCase() > b.authorBook.name.toLowerCase()) {
+                                    return -1;
+                                }
+                                if (a.authorBook.name.toLowerCase() < b.authorBook.name.toLowerCase()) {
+                                    return 1;
+                                }
+                                return 0;
+                            });
+                            break;
+                        case 'book[a-z]':
+                            return listBooks.sort( function(a, b) {
+                                if (a.nameBook.toLowerCase() < b.nameBook.toLowerCase()) {
+                                    return -1;
+                                }
+                                if (a.nameBook.toLowerCase() > b.nameBook.toLowerCase()) {
+                                    return 1;
+                                }
+                                return 0;
+                            });
+                            break;
+                        case 'book[z-a]':
+                            return listBooks.sort( function(a, b) {
+                                if (a.nameBook.toLowerCase() > b.nameBook.toLowerCase()) {
+                                    return -1;
+                                }
+                                if (a.nameBook.toLowerCase() < b.nameBook.toLowerCase()) {
+                                    return 1;
+                                }
+                                return 0;
+                            });
+                            break;
+                    }
+
                 } else {
                     return listBooks;
                 }
@@ -123,10 +181,10 @@
             }
         },
         watch: {
-            filter() {
+            localFilterBookName() {
                 this.updateRouteParamsMainWay();
             },
-            sort() {
+            sortOptions() {
                 this.updateRouteParamsMainWay();
             }
         },
@@ -153,8 +211,8 @@
                     path: '/',
                     query: {
                         setNumberOfPage: p,
-                        sortBy: this.sort,
-                        filterBookName: this.filter,
+                        sortBy: this.sortOptions,
+                        filterBookName: this.localFilterBookName,
                     }
                 });
             },
@@ -176,8 +234,8 @@
                     path: '/',
                     query: {
                         setNumberOfPage: this.setNumberOfPage,
-                        sortBy: this.sort,
-                        filterBookName: this.filter
+                        sortBy: this.sortOptions,
+                        filterBookName: this.localFilterBookName
                     }
                 });
             },
@@ -193,11 +251,20 @@
 </script>
 <style lang="scss" scoped>
     .container {
+        .search-wrapper {
+            .book-name-filter {
+                padding-left: 0;
+                padding-right: 0;
+                margin-top: 10px;
+            }
+        }
+
         .list-group {
             overflow: hidden;
             flex-direction: row;
+            flex-wrap: wrap;
             .list-group-item {
-                width: 33%;
+                width: 30%;
                 margin-right: 10px;
                 margin-bottom: 10px;
 

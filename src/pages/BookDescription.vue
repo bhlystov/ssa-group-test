@@ -16,8 +16,6 @@
 
         <ul class="list-group  col-xs-12 col-md-12 col-lg-12">
             <li v-for="item in bookDescriptionList" class="list-group-item col-xs-4 col-md-4 col-lg-4">
-
-                <!--TODO не хочет подгружать картинку с указаного пути через v-bind {{item.imgBook}} пока что указал на прямую-->
                 <img src="./img/books.jpg" class="img-book">
                 <h3>Name of book: {{item.nameBook}}</h3>
                 <div class="redirect-to">
@@ -84,6 +82,7 @@
 <style lang="scss" scoped>
     .book-description {
         .list-group {
+            flex-wrap: wrap;
             .list-group-item {
                 .img-book {
                     display: block;

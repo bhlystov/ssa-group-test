@@ -23,7 +23,6 @@
                         class="list-group-item book-item"
                         v-for="books in item.listBooks"
                     >
-                        <!--TODO не хочет подгружать картинку с указаного пути через v-bind {{item.imgBook}} пока что указал на прямую-->
                         <img src="./img/books.jpg" class="img-book">
                         <div class="redirect-to">
                             <p class="book-name">
@@ -82,7 +81,7 @@
              * @returns {Array}
              */
             async reload() {
-                this.authorListOfBooks  = await apiClient.getAthorListBooks();
+                this.authorListOfBooks  = await apiClient.getAuthorListBooks();
             },
         }
     }
@@ -93,6 +92,7 @@
             .book-container {
                 overflow: hidden;
                 flex-direction: row;
+                flex-wrap: wrap;
 
                 .book-item {
                     width: 33%;
