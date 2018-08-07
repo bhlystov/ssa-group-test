@@ -34,7 +34,7 @@
 
         <ul class="list-group col-xs-12 col-md-12 col-lg-12">
             <li v-for="item in collection" class="list-group-item">
-                <img src="./img/books.jpg" class="img-book">
+                <img :src="require(`@/assets/${item.imgBook}`)" class="img-book">
                 <div class="redirect-to">
                     <p class="book-name">
                         {{item.nameBook}}

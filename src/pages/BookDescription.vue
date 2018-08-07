@@ -16,7 +16,7 @@
 
         <ul class="list-group  col-xs-12 col-md-12 col-lg-12">
             <li v-for="item in bookDescriptionList" class="list-group-item col-xs-4 col-md-4 col-lg-4">
-                <img src="./img/books.jpg" class="img-book">
+                <img :src="require(`@/assets/${item.imgBook}`)" class="img-book">
                 <h3>Name of book: {{item.nameBook}}</h3>
                 <div class="redirect-to">
                     <p class="author-name">
