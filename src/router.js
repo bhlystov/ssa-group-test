@@ -1,16 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router'
 
-import BooksList from './pages/BooksList.vue';
-import BookDescription from './pages/BookDescription.vue';
-import AuthorListOfBooks from './pages/AuthorListOfBooks.vue';
-
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: '/',
-        component: BooksList,
+        component: () => import('./pages/BooksList.vue'),
         props: route => {
             return {
                 setNumberOfPage: parseInt(route.query.setNumberOfPage),
@@ -22,7 +18,7 @@ const routes = [
     {
         path: '/book',
         name: 'bookDescription',
-        component: BookDescription,
+        component: () => import('./pages/BookDescription.vue'),
         props: route => {
             return {
                 idBook: parseInt(route.query.idBook),
@@ -32,7 +28,7 @@ const routes = [
     {
         path: '/author',
         name: 'author',
-        component: AuthorListOfBooks,
+        component: () => import('./pages/AuthorListOfBooks.vue'),
         props: route => {
             return {
                 authorId: parseInt(route.query.authorId),

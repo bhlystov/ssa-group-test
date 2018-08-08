@@ -23,7 +23,7 @@
                         class="list-group-item book-item"
                         v-for="books in item.listBooks"
                     >
-                        <img :src="require(`@/assets/${item.imgBook}`)" class="img-book">
+                        <img :src="require(`@/assets/${books.imgBook}`)" class="img-book">
                         <div class="redirect-to">
                             <p class="book-name">
                                 {{books.nameBook}}
