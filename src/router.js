@@ -6,29 +6,49 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/',
-        component: () => import('./pages/BooksList.vue'),
-        props: route => {
-            return {
-                setNumberOfPage: parseInt(route.query.setNumberOfPage),
-                sortBy: route.query.sortBy,
-                filterBookName: route.query.filterBookName
-            };
-        },
+        component: () => import('./pages/Main.vue'),
+        // props: route => {
+        //     return {
+        //         setNumberOfPage: parseInt(route.query.setNumberOfPage),
+        //         sortBy: route.query.sortBy,
+        //         filterBookName: route.query.filterBookName
+        //     };
+        // },
     },
     {
-        path: '/book',
-        name: 'bookDescription',
-        component: () => import('./pages/BookDescription.vue'),
-        props: route => {
-            return {
-                idBook: parseInt(route.query.idBook),
-            };
-        },
+        path: '/content',
+        name: 'content',
+        component: () => import('./pages/Content.vue'),
+        // props: route => {
+        //     return {
+        //         idBook: parseInt(route.query.idBook),
+        //     };
+        // },
     },
     {
-        path: '/author',
-        name: 'author',
-        component: () => import('./pages/AuthorListOfBooks.vue'),
+        path: '/other-links',
+        name: 'otherLinks',
+        component: () => import('./pages/Content.vue'),
+        // props: route => {
+        //     return {
+        //         authorId: parseInt(route.query.authorId),
+        //     };
+        // },
+    },
+    {
+        path: '/about-us',
+        name: 'aboutUs',
+        component: () => import('./pages/Content.vue'),
+        // props: route => {
+        //     return {
+        //         authorId: parseInt(route.query.authorId),
+        //     };
+        // },
+    },
+    {
+        path: '/contacts',
+        name: 'contacts',
+        component: () => import('./pages/Content.vue'),
         props: route => {
             return {
                 authorId: parseInt(route.query.authorId),

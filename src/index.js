@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-import loading from 'vue-loading';
+import ElementUI from 'element-ui';
+import locale from 'element-ui/lib/locale/lang/ru-RU';
 
-//Add Lodash for pagination
-import VueLodash from 'vue-lodash';
-const options = { name: 'lodash' };
-Vue.use(VueLodash, options);
+import VueLoading from 'vuex-loading'
+Vue.use(VueLoading);
+Vue.use(ElementUI, {locale});
 
 //Add bootstrap
 import BootstrapVue from 'bootstrap-vue'
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     new Vue({
         router,
-        directives: { loading },
+        // vueLoading: new VueLoading({registerComponents: false, useVuex: true}),
         render: h => h(App),
     }).$mount(mountPoint);
 });
