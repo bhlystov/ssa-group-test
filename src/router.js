@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/',
+        name: 'main',
         component: () => import('./pages/Main.vue'),
         // props: route => {
         //     return {
@@ -49,11 +50,11 @@ const routes = [
         path: '/contacts',
         name: 'contacts',
         component: () => import('./pages/Content.vue'),
-        props: route => {
-            return {
-                authorId: parseInt(route.query.authorId),
-            };
-        },
+        // props: route => {
+        //     return {
+        //         authorId: parseInt(route.query.authorId),
+        //     };
+        // },
     },
     {
         path: '*',
