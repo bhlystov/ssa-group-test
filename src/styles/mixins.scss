@@ -1,0 +1,18 @@
+@mixin fontKnewave {
+  font-family: 'Knewave';
+}
+
+@mixin fontRoboto {
+  font-family: 'Roboto-Regular';
+}
+
+@mixin constantaMaxMinWidth {
+  max-width: 1366px;
+  min-width: 320px;
+}
+
+@mixin fullCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

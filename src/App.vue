@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <div class="community-container col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                <div class="community-container col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <p class="name-blocks-footer">COMMUNITY</p>
                     <ul>
                         <li>
@@ -64,7 +64,7 @@
                     </ul>
                 </div>
 
-                <div class="contact-container col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                <div class="contact-container col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <h4 class="name-blocks-footer">CONTACT</h4>
                     <p class="sub-category-contacts">Address:</p>
                     <p class="sub-category-contacts-info">Country, City, Street 123</p>
@@ -98,11 +98,7 @@
         name: 'App',
     }
 </script>
-<style lang="scss" scoped>
-    $custom-light-green: #4fd4b9;
-    $custom-blue-green: #1b6763;
-    $custom-dark-blue: #434b6f;
-
+<style lang="scss">
     @font-face {
         font-family: 'Roboto-Regular';
         src: url(./fonts/Roboto-Regular.ttf);
@@ -112,23 +108,11 @@
         font-family: 'Knewave';
         src: url(./fonts/knewave.ttf);
     }
-
-    @mixin fontKnewave {
-        font-family: 'Knewave';
-    }
-
-    @mixin fontRoboto {
-        font-family: 'Roboto-Regular';
-    }
-
-    @mixin constantaMaxMinWidth {
-        max-width: 1366px;
-        min-width: 320px;
-    }
+    @import './styles/common.scss';
 
     header {
         position: absolute;
-        z-index: 1;
+        z-index: 999;
         width: 100%;
         background-color: $custom-light-green;
 

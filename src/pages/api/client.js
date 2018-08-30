@@ -6,245 +6,41 @@ import qs from 'qs';
  */
 class ApiClient {
 
-    async getBooksListData() {
+    async getDataList() {
+        // const responseData = await this.request('get', url);
 
-        const booksListData = [
+        //TODO Temporary solution
+        const responseData = [
             {
-                idBook: 1,
-                nameBook: 'Game of thrones',
-                imgBook: 'books.jpg',
-                authorBook: {
-                    idAuthor: 1,
-                    name: 'Johny Depp',
-                },
-                descriptionOfBook: 'Some description about book...'
+                "id": "1",
+                "url": "service01.png",
+                "title": "Foto Bewerking",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias animi architecto assumenda cum distinctio, dolorem eum ipsa mollitia nobis numquam odit quaerat qui tempore, tenetur."
             },
             {
-                idBook: 2,
-                nameBook: 'Holly Bible',
-                imgBook: 'books.jpg',
-                authorBook: {
-                    idAuthor: 1,
-                    name: 'Johny Depp',
-                },
-                descriptionOfBook: 'Some description about book...'
+                "id": "2",
+                "url": "service02.png",
+                "title": "Illustratie",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias animi architecto assumenda cum distinctio, dolorem eum ipsa mollitia nobis numquam odit quaerat qui tempore, tenetur."
             },
             {
-                idBook: 3,
-                nameBook: 'Harry Potter 2',
-                imgBook: 'books.jpg',
-                authorBook: {
-                    idAuthor: 2,
-                    name: 'Joan Rouling',
-                },
-                descriptionOfBook: 'Some description about book...'
+                "id": "3",
+                "url": "service03.png",
+                "title": "Video & Animate",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
             },
             {
-                idBook: 4,
-                nameBook: 'Fighting club',
-                imgBook: 'books.jpg',
-                authorBook: {
-                    idAuthor: 3,
-                    name: 'Chack Palanik',
-                },
-                descriptionOfBook: 'Some description about book...'
-            },
-            {
-                idBook: 5,
-                nameBook: 'Rich dad Pour dad',
-                imgBook: 'books.jpg',
-                authorBook: {
-                    idAuthor: 4,
-                    name: 'Robert Kiosake',
-                },
-                descriptionOfBook: 'Some description about book...'
-            },
-            {
-                idBook: 6,
-                nameBook: 'Stalker',
-                imgBook: 'books.jpg',
-                authorBook: {
-                    idAuthor: 5,
-                    name: 'Братья Стругацкие',
-                },
-                descriptionOfBook: 'Some description about book...'
-            },
-            {
-                idBook: 7,
-                nameBook: 'The nordic history',
-                imgBook: 'books.jpg',
-                authorBook: {
-                    idAuthor: 6,
-                    name: 'NoName Author',
-                },
-                descriptionOfBook: 'Some description about book...'
-            },
-            {
-                idBook: 8,
-                nameBook: "Stalker 'Луннь'",
-                imgBook: 'books.jpg',
-                authorBook: {
-                    idAuthor: 7,
-                    name: 'Ежи тумановский',
-                },
-                descriptionOfBook: 'Some description about book...'
-            },
-            {
-                idBook: 9,
-                nameBook: 'It',
-                imgBook: 'books.jpg',
-                authorBook: {
-                    idAuthor: 8,
-                    name: 'Stiven Kipling',
-                },
-                descriptionOfBook: 'Some description about book...'
-            },
-            {
-                idBook: 10,
-                nameBook: 'World War',
-                imgBook: 'books.jpg',
-                authorBook: {
-                    idAuthor: 8,
-                    name: 'Stiven Kipling',
-                },
-                descriptionOfBook: 'Some description about book...'
-            },
-            {
-                idBook: 11,
-                nameBook: 'Harry Potter 3',
-                imgBook: 'books.jpg',
-                authorBook: {
-                    idAuthor: 2,
-                    name: 'Joan Rouling',
-                },
-                descriptionOfBook: 'Some description about book...'
-            },
+                "id": "4",
+                "url": "service04.png",
+                "title": "3D Animate",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias animi architecto assumenda cum distinctio, dolorem eum ipsa mollitia nobis numquam odit quaerat qui tempore, tenetur."
+            }
         ];
 
-        return booksListData;
+         return responseData;
     }
 
-    async getAuthorListBooks() {
 
-        const responseAuthorListBooks = [
-            {
-                idAuthor: 1,
-                name: 'Johny Depp',
-                listBooks: [
-                    {
-                        idBook: 1,
-                        nameBook: 'Game of thrones',
-                        imgBook: 'books.jpg',
-                        descriptionOfBook: 'Some description about book...'
-                    },
-                    {
-                        idBook: 2,
-                        nameBook: 'Holly Bible',
-                        imgBook: 'books.jpg',
-                        descriptionOfBook: 'Some description about book...'
-                    }
-                ]
-            },
-            {
-                idAuthor: 2,
-                name: 'Johny Depp',
-                listBooks: [
-                    {
-                        idBook: 3,
-                        nameBook: 'Harry Potter 2',
-                        imgBook: 'books.jpg',
-                        descriptionOfBook: 'Some description about book...'
-                    },
-                    {
-                        idBook: 11,
-                        nameBook: 'Harry Potter 3',
-                        imgBook: 'books.jpg',
-                        descriptionOfBook: 'Some description about book...'
-                    }
-                ]
-            },
-            {
-                idAuthor: 3,
-                name: 'Johny Depp',
-                listBooks: [
-                    {
-                        idBook: 4,
-                        nameBook: 'Fighting club',
-                        imgBook: 'books.jpg',
-                        descriptionOfBook: 'Some description about book...'
-                    }
-                ]
-            },
-            {
-                idAuthor: 4,
-                name: 'Robert Kiosake',
-                listBooks: [
-                    {
-                        idBook: 5,
-                        nameBook: 'Rich dad Pour dad',
-                        imgBook: 'books.jpg',
-                        descriptionOfBook: 'Some description about book...'
-                    }
-                ]
-            },
-            {
-                idAuthor: 5,
-                name: 'Братья Стругацкие',
-                listBooks: [
-                    {
-                        idBook: 6,
-                        nameBook: 'Stalker',
-                        imgBook: 'books.jpg',
-                        descriptionOfBook: 'Some description about book...'
-                    }
-                ]
-            },
-            {
-                idAuthor: 6,
-                name: 'NoName Author',
-                listBooks: [
-                    {
-                        idBook: 7,
-                        nameBook: 'The nordic history',
-                        imgBook: 'books.jpg',
-                        descriptionOfBook: 'Some description about book...'
-                    }
-                ]
-            },
-            {
-                idAuthor: 7,
-                name: 'Ежи тумановский',
-                listBooks: [
-                    {
-                        idBook: 8,
-                        nameBook: "Stalker 'Луннь'",
-                        imgBook: 'books.jpg',
-                        descriptionOfBook: 'Some description about book...'
-                    }
-                ]
-            },
-            {
-                idAuthor: 8,
-                name: 'Stiven Kipling',
-                listBooks: [
-                    {
-                        idBook: 9,
-                        nameBook: 'It',
-                        imgBook: 'books.jpg',
-                        descriptionOfBook: 'Some description about book...'
-                    },
-                    {
-                        idBook: 10,
-                        nameBook: 'World War',
-                        imgBook: 'books.jpg',
-                        descriptionOfBook: 'Some description about book...'
-                    }
-                ]
-            },
-        ];
-
-        return responseAuthorListBooks;
-    }
 
     async request(method, url, data, params) {
         let response;
