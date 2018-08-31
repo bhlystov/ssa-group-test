@@ -4,7 +4,9 @@
             <header-navigation />
         </header>
         <main>
-            <router-view />
+            <transition name="fade">
+                <router-view />
+            </transition>
         </main>
         <footer-body />
     </div>
@@ -21,9 +23,11 @@
         },
         methods: {
             ...mapActions('list', ['fetchDataList']),
+            ...mapActions('contentText', ['fetchContentText']),
         },
         async created () {
             await this.fetchDataList();
+            await this.fetchContentText();
         }
     }
 </script>

@@ -117,7 +117,7 @@
                     padding: 20px;
                 }
                 button {
-                    background-color: #fdf063;
+                    background-color: $custom-yellow;
                     border-color: transparent;
                 }
             }

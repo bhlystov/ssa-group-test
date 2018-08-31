@@ -68,7 +68,7 @@
         .item-description {
             @include fontRoboto;
             font-size: 16px;
-            color: #FFFFFF;
+            color: $white;
         }
 
         .button-wrapper {
@@ -77,12 +77,12 @@
             bottom: 50px;
             position: absolute;
             button {
-                color: #FFFFFF;
-                border-color: #FFFFFF;
+                color: $white;
+                border-color: $white;
                 font-size: 14px;
 
                 &:hover {
-                    color: #000000;
+                    color: $black;
                     border-color: transparent;
                     background-color: #feed23;
                 }

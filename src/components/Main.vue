@@ -53,7 +53,7 @@
         mixins: [filter],
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     @import '../styles/common.scss';
 
     .main-container {
@@ -79,12 +79,12 @@
                 }
                 .train-title {
                     @include fontKnewave;
-                    color: #feed23;
+                    color: $custom-yellow;
                     font-size: 64px;
                 }
                 .train-content {
                     @include fontRoboto;
-                    color: #FFFFFF;
+                    color: $white;
                     font-size: 26px;
                 }
                 .button-wrapper {
@@ -92,14 +92,14 @@
                     justify-content: center;
                     button {
                         margin-right: 10px;
-                        color: #FFFFFF;
-                        border-color: #FFFFFF;
+                        color: $white;
+                        border-color: $white;
                         font-size: 18px;
 
                         &:hover {
-                            color: #000000;
+                            color: $black;
                             border-color: transparent;
-                            background-color: #feed23;
+                            background-color: $custom-yellow;
                         }
                     }
                 }
@@ -108,7 +108,7 @@
             .train-transparent-shadow {
                 width: 100%;
                 height: 100%;
-                background-color: #000000;
+                background-color: $black;
                 opacity: 0.3;
                 position: absolute;
             }

@@ -17,11 +17,13 @@ Vue.config.productionTip = false;
 Vue.use(Vuex);
 import createLogger from 'vuex/dist/logger'
 import list from './store/index.js';
+import contentText from './store/contentText.js';
 
 //Регистрация хранилища Vuex
 const store = new Vuex.Store({
     modules: {
-        list
+        list,
+        contentText
     },
     plugins: [createLogger()]
 });

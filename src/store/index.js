@@ -8,7 +8,7 @@ const state = {
 const actions = {
     async fetchDataList ({ commit }) {
         try {
-            commit('getListContent', await apiClient.getDataList());
+            commit('setListContent', await apiClient.getDataList());
         } catch (err) {
             throw err;
         }
@@ -16,7 +16,7 @@ const actions = {
 };
 
 const mutations = {
-    getListContent (state, listWhatWeDo) {
+    setListContent (state, listWhatWeDo) {
         state.listWhatWeDo = listWhatWeDo;
     },
     setFooterInputValue(state, footerInputValue) {
