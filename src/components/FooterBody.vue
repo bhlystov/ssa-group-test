@@ -7,6 +7,7 @@
                     <input type="text"
                            class="form-control"
                            placeholder="Some text"
+                           maxlength="20"
                            icon="search"
                            v-model="footerInputValue"
                     >
@@ -117,7 +118,7 @@
                     padding: 20px;
                 }
                 button {
-                    background-color: #fdf063;
+                    background-color: $custom-yellow;
                     border-color: transparent;
                 }
             }

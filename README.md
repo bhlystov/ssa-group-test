@@ -2,13 +2,29 @@
 
 > A Vue.js project
 
+# Тестовое задания SSA GROUP
+
+> - Вы можете использовать любые удобные технологии.  
+> - Pixel perfect не обязателен. 
+> - Мобильный дизайн на Ваше усмотрение. (min-width: 320px) 
+> - Шрифты используются Knewave и Roboto
+> - Кроссбраузерность. (Если Вы используете современные технологии, которые не поддерживаются в IE, примените подход Graceful Degradation) 
+> - плавающий блок (sticky) 
+> - Задание залить в git репозиторий
+
+> - Для кандидатов на позицию Frontend-developer 
+> - По нажатию на кнопку “Send”, текст из input должен отображазиться в заголовке 
+> - страницы Content 
+
+
+
 ## Build Setup
 
 ``` bash
 for install need versions npm & nodejs
-
 npm - 5.6.0
 nodejs - v10.1.0
+
 # install dependencies
 npm install
 
