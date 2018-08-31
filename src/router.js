@@ -7,54 +7,27 @@ const routes = [
     {
         path: '/',
         name: 'main',
-        component: () => import('./pages/Main.vue'),
-        // props: route => {
-        //     return {
-        //         setNumberOfPage: parseInt(route.query.setNumberOfPage),
-        //         sortBy: route.query.sortBy,
-        //         filterBookName: route.query.filterBookName
-        //     };
-        // },
+        component: () => import('./components/Main.vue'),
     },
     {
         path: '/content',
         name: 'content',
-        component: () => import('./pages/Content.vue'),
-        // props: route => {
-        //     return {
-        //         idBook: parseInt(route.query.idBook),
-        //     };
-        // },
+        component: () => import('./components/Main.vue'),
     },
     {
         path: '/other-links',
         name: 'otherLinks',
-        component: () => import('./pages/Content.vue'),
-        // props: route => {
-        //     return {
-        //         authorId: parseInt(route.query.authorId),
-        //     };
-        // },
+        component: () => import('./components/Main.vue'),
     },
     {
         path: '/about-us',
         name: 'aboutUs',
-        component: () => import('./pages/Content.vue'),
-        // props: route => {
-        //     return {
-        //         authorId: parseInt(route.query.authorId),
-        //     };
-        // },
+        component: () => import('./components/Content.vue'),
     },
     {
         path: '/contacts',
         name: 'contacts',
-        component: () => import('./pages/Content.vue'),
-        // props: route => {
-        //     return {
-        //         authorId: parseInt(route.query.authorId),
-        //     };
-        // },
+        component: () => import('./components/Content.vue'),
     },
     {
         path: '*',
