@@ -7,6 +7,7 @@
                     <input type="text"
                            class="form-control"
                            placeholder="Some text"
+                           maxlength="20"
                            icon="search"
                            v-model="footerInputValue"
                     >
